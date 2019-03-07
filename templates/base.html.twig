@@ -58,6 +58,15 @@
         <hr class="my-1">
 
         <footer class="container">
+        
+            {% if randomMovie is defined %}
+
+            <p>
+                Film aleatoire : 
+                <a href="{{ path('movie_show', {'slug': randomMovie.slug} )}}">{{ randomMovie.title }}</a>
+            </p>
+
+            {% endif %}
         </footer>
         
         {% block javascripts %}{% endblock %}
