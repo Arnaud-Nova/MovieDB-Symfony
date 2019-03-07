@@ -1,0 +1,13 @@
+{% extends 'backend/backend_layout.html.twig' %}
+
+{% block title %}Edit Movie{% endblock %}
+
+{% block content %}
+    <h1>Edit Movie</h1>
+
+    {{ include('backend/movie/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('backend_movie_index') }}">back to list</a>
+
+    {{ include('backend/movie/_delete_form.html.twig') }}
+{% endblock %}

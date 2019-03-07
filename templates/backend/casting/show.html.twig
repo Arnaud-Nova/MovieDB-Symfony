@@ -1,0 +1,30 @@
+{% extends 'backend/backend_layout.html.twig' %}
+
+{% block title %}Casting{% endblock %}
+
+{% block content %}
+    <h1>Casting</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ casting.id }}</td>
+            </tr>
+            <tr>
+                <th>role</th>
+                <td>{{ casting.role}}</td>
+            </tr>
+            <tr>
+                <th>OrderCredit</th>
+                <td>{{ casting.orderCredit }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('backend_casting_index') }}">back to list</a>
+
+    <a href="{{ path('backend_casting_edit', {'id': casting.id}) }}">edit</a>
+
+    {{ include('backend/casting/_delete_form.html.twig') }}
+{% endblock %}

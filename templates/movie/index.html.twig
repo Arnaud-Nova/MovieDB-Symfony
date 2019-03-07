@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block sidebar %}
+    <div class="col-2" id="sidebar">
+        <h3>
+            Last 10
+        </h3>
+            
+        {% for lastMovie in last_movies %}
+            <div>
+                <a href="{{ path('movie_show', {'slug': lastMovie.slug })}}">
+                    {{ lastMovie }}
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+
+{% block content %}
+
+    <h2 id="header-margin">
+        Retrouvez les films recensés sur Allociné, à voir ou à revoir, seul, en famille ou entre amis.
+    </h2>
+
+    <ul>
+
+        {% for movie in movies %}
+
+            {% include 'movie/_main.html.twig' with { 'displaySummary': true } %}
+
+        {% else %}
+
+            Aucun film ne correspond à la recherche recherche : <strong> {{ searchTitle }} </strong>
+            
+        {% endfor %}
+        
+    </ul>
+
+{% endblock %}

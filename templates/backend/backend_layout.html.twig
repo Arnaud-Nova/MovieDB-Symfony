@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block nav %}
+    <nav class=" container-fluid nav">
+        <a class="nav-item nav-link"  href="{{ path('backend_movie_index') }}"> 
+            Movie 
+        </a>
+        <a class="nav-item nav-link"  href="{{ path('backend_job_index') }}"> 
+            Job 
+        </a>
+        <a class="nav-item nav-link"  href="{{ path('backend_department_index') }}"> 
+            Department 
+        </a>
+        <a class="nav-item nav-link"  href="{{ path('backend_team_index') }}"> 
+            Team 
+        </a>
+         <a class="nav-item nav-link"  href="{{ path('backend_user_index') }}"> 
+            User 
+        </a>
+    </nav>
+{% endblock %}

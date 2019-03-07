@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Hellociné</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:500,600" rel="stylesheet">
+        <link rel="stylesheet" href="app.css">
+ 
+        <link rel="icon" type="image/x-icon" href="" />
+    </head>
+    <body id="">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <nav>
+                        <a href="">Admin</a>
+                    </nav>
+                    <div id="breadcrumb">
+                        <a href="">Accueil </a>
+                    </div>
+                           
+                    <h1>Tous les films</h1>
+                        <h2 id="header-margin">Retrouvez les films recensés sur Hellociné, à voir ou à revoir, seul, en famille ou entre amis.</h2>
+
+                        <div class="row">
+                            <div class="col-2" id="genres">
+                                <h3>Par genres</h3>
+                           
+                                <div>Genre A</div>
+                                <div>Genre B</div>
+                                <div>Genre C</div>
+                                <div>Genre D</div>
+                                <div>Genre E</div>
+                                <div>Genre F</div>
+                            </div>
+                            <div class="col-10">
+                                <ul>
+                                    <div class="row movie-main">
+                                            <div class="col-4">
+                                                <a href="{{ path('movie_show', { 'id': movie.id }) }}">
+                                                    <img src="default-movie.jpg" class="img-fluid">
+                                                </a>
+                                            </div>
+                                            <div class="col-8">
+                                                <p>
+                                                    <a href="show.html" class="title">Titre film</a>
+                                                </p>
+
+                                                <p>
+                                                    Genre A,  Genre B, Genre E
+                                                </p>
+
+                                                <p>Avec 
+                                                    <a href="">Acteur 1 </a>
+                                                    <a href="">Acteur 2 </a>
+                                                    <a href="">Acteur 3 </a>
+                                                </p>
+                                        
+                                                <p class="summary">
+                                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim, aspernatur. 
+                                                    Sint commodi ea, vel maxime possimus iste error repudiandae provident laborum cupiditate, 
+                                                    porro dolor harum eaque aliquam omnis alias expedita!
+
+                                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim, aspernatur. 
+                                                    Sint commodi ea, vel maxime possimus iste error repudiandae provident laborum cupiditate, 
+                                                    porro dolor harum eaque aliquam omnis alias expedita!
+                                                </p>
+                                                
+                                                <!-- 
+                                                    formule de calcul si implementation d'image : rajouter une propriété score par ex puis :
+                                                    <img src="stars.png" style="background-position-x: -{{ 100 - 100 / 5 * movie.score }}px">
+                                                -->
+                                                <p class="score"><img src="stars.png" style="background-position-x: -40px">
+                                                    3
+                                                </p>
+                                        
+                                            </div>
+                                    </div>
+                                    <hr>
+
+                                    <div class="row movie-main">
+                                            <div class="col-4">
+                                                <a href="{{ path('movie_show', { 'id': movie.id }) }}">
+                                                    <img src="default-movie.jpg" class="img-fluid">
+                                                </a>
+                                            </div>
+                                            <div class="col-8">
+                                                <p>
+                                                    <a href="show.html" class="title">Titre film</a>
+                                                </p>
+
+                                                <p>
+                                                    Genre A,  Genre B, Genre E
+                                                </p>
+
+                                                <p>Avec 
+                                                    <a href="">Acteur 1 </a>
+                                                    <a href="">Acteur 2 </a>
+                                                    <a href="">Acteur 3 </a>
+                                                </p>
+                                        
+                                                <p class="summary">
+                                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim, aspernatur. 
+                                                    Sint commodi ea, vel maxime possimus iste error repudiandae provident laborum cupiditate, 
+                                                    porro dolor harum eaque aliquam omnis alias expedita!
+
+                                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim, aspernatur. 
+                                                    Sint commodi ea, vel maxime possimus iste error repudiandae provident laborum cupiditate, 
+                                                    porro dolor harum eaque aliquam omnis alias expedita!
+                                                </p>
+                                                
+                                                <!-- 
+                                                    formule de calcul si implementation d'image : rajouter une propriété score par ex puis :
+                                                    <img src="stars.png" style="background-position-x: -{{ 100 - 100 / 5 * movie.score }}px">
+                                                -->
+                                                <p class="score"><img src="stars.png" style="background-position-x: -40px">
+                                                    3
+                                                </p>
+                                        
+                                            </div>
+                                    </div>
+                                    <hr>
+
+                                    <div class="row movie-main">
+                                            <div class="col-4">
+                                                <a href="{{ path('movie_show', { 'id': movie.id }) }}">
+                                                    <img src="default-movie.jpg" class="img-fluid">
+                                                </a>
+                                            </div>
+                                            <div class="col-8">
+                                                <p>
+                                                    <a href="show.html" class="title">Titre film</a>
+                                                </p>
+
+                                                <p>
+                                                    Genre A,  Genre B, Genre E
+                                                </p>
+
+                                                <p>Avec 
+                                                    <a href="">Acteur 1 </a>
+                                                    <a href="">Acteur 2 </a>
+                                                    <a href="">Acteur 3 </a>
+                                                </p>
+                                        
+                                                <p class="summary">
+                                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim, aspernatur. 
+                                                    Sint commodi ea, vel maxime possimus iste error repudiandae provident laborum cupiditate, 
+                                                    porro dolor harum eaque aliquam omnis alias expedita!
+
+                                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim, aspernatur. 
+                                                    Sint commodi ea, vel maxime possimus iste error repudiandae provident laborum cupiditate, 
+                                                    porro dolor harum eaque aliquam omnis alias expedita!
+                                                </p>
+                                                
+                                                <!-- 
+                                                    formule de calcul si implementation d'image : rajouter une propriété score par ex puis :
+                                                    <img src="stars.png" style="background-position-x: -{{ 100 - 100 / 5 * movie.score }}px">
+                                                -->
+                                                <p class="score"><img src="stars.png" style="background-position-x: -40px">
+                                                    3
+                                                </p>
+                                        
+                                            </div>
+                                    </div>
+                                    <hr>
+                                </ul>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

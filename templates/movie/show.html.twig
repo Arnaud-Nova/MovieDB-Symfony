@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+    <h1 id="header-margin">{{ movie.title }}</h1>
+
+    {% include 'movie/_main.html.twig' %}
+
+    <h2>
+        Synopsis et détails
+    </h2>
+
+    <p>{{ movie.summary }}</p>
+
+    <p class="infos">
+        <label>
+            Année de production
+        </label>
+        {{ movie.productionDate|date('Y') }}
+    </p>
+
+    <h2 id="casting">Acteurs et actrices</h2>
+
+    <div class="row casting">
+
+    {% for casting in movie.castings %}
+
+        <div class="col-3">
+            <div class="actor">
+                {{ casting.person.name }}
+            </div>
+            <div class="role">
+                Rôle : {{ casting.role }}
+            </div>
+        </div>
+
+    {% endfor %}
+
+    </div>
+    <hr>
+
+{% endblock %}

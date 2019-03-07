@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Casting{% endblock %}
+
+{% block content %}
+    <h1>Edit Casting</h1>
+
+    {{ include('backend/casting/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('backend_casting_indexbymovie', {'id' : casting.movie.id }) }}">back to list</a>
+
+    {{ include('backend/casting/_delete_form.html.twig') }}
+{% endblock %}

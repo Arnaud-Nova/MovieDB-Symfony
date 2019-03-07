@@ -1,0 +1,8 @@
+twig:
+    paths: ['%kernel.project_dir%/templates']
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
+    form_themes:
+        - 'bootstrap_4_layout.html.twig'
+    globals: #permets de declarer des constantes applicatives
+       poster_upload_path: 'uploads/posters/'

@@ -1,0 +1,57 @@
+security:
+    encoders:
+        App\Entity\User:
+            algorithm: bcrypt
+
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    # cette section definie l'endroit d'ou proviennent mes utilisateurs
+    providers:
+        nova_provider:
+            entity:
+                class: App\Entity\User
+                property: username # j'indique sur mon provider quel champs va etre utilisé pour tester le nom d'utilisateur
+    
+    #definit de quelle maniere je vais m'authentifier et recuperer le provider par lequel je souhaite m'authentifier
+    firewalls:
+        # cette section est dediée pour la debugtoolbar
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        
+        # cette section est l'endroit ou l'on va configurer notre connection
+        main:
+            anonymous: true
+
+            # activate different ways to authenticate
+
+            # j'active l'authent par popup systeme cela n'est pas la facon la plus courante de se logger
+            #http_basic: true # NOTE : http basic + form ne peuvent pas cohabiter ensemble
+            provider: nova_provider # ici je cable mon provider / fournisseur avec mon mode d'authentification
+            logout:
+                path:   app_logout
+            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+
+            form_login: true
+            guard:
+                authenticators:
+                    - App\Security\LoginFormAuthenticator
+            # https://symfony.com/doc/current/security/form_login_setup.html
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    # cette section va definir quel role on acces à quels page / lot de pages
+
+    # cette zone definit dans l'ordre (de la plus longue / plus complexe à la plus souple / petite) la liste des securité appliqué par chacune de nos url
+    # NOTE : Tout comme les routes classiques , il faut tester en amont les regles les plus completes et les plus complexes
+    # afin d'eviter de rentrer dans une regle trop souple qui ne correspondrait pas a notre attente
+    access_control:
+        - { path: '^\/backend\/department\/delete\/[0-9]+', roles: ROLE_NOVA_ADMIN } 
+        - { path: '^\/backend\/department\/editcreate\/[0-9]+', roles: ROLE_NOVA_ADMIN } 
+        - { path: '^\/backend\/[a-z]+\/[0-9]+\/edit', roles: ROLE_NOVA_ADMIN } #l'expression reguliere indique "toute les urls qui commencent par /backend
+        - { path: '^\/backend\/[a-z]+\/new', roles: ROLE_NOVA_ADMIN } 
+        - { path: '^\/backend\/[a-z]+\/[0-9]+', methods: ['DELETE'], roles: ROLE_NOVA_ADMIN }
+        - { path: '^\/backend\/[a-z]+\/[0-9]+', methods: ['GET'], roles: ROLE_NOVA_USER }
+        - { path: '^\/backend\/[a-z]+', roles: ROLE_NOVA_USER }
+    
+    role_hierarchy:
+        ROLE_NOVA_ADMIN: ROLE_NOVA_USER

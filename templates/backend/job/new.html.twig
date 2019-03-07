@@ -1,0 +1,11 @@
+{% extends 'backend/backend_layout.html.twig' %}
+
+{% block title %}New Job{% endblock %}
+
+{% block content %}
+    <h1>Create new Job</h1>
+
+    {{ include('backend/job/_form.html.twig') }}
+
+    <a href="{{ path('backend_job_index') }}">back to list</a>
+{% endblock %}

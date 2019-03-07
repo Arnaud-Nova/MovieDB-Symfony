@@ -1,0 +1,47 @@
+<div class="row movie-main">
+
+    <div class="col-4">
+        <a href="{{ path('movie_show', { 'slug': movie.slug }) }}">
+            <img src="{{ asset(poster_upload_path ~ (movie.poster ?: 'default-movie.jpg')) }}" class="img-fluid">
+        </a>
+    </div>
+
+    <div class="col-8">
+
+        <p>
+            <a href="{{ path('movie_show', { 'slug': movie.slug }) }}" class="title">
+                {{ movie.title }}
+            </a>
+        </p>
+
+        <p>
+            {% for genre in movie.genres %}
+            
+                {{ genre.name }}
+                
+                {% if not loop.last %}
+                , 
+                {% endif %}
+            {% endfor %}
+        </p>
+
+        <p>Avec 
+            {% for casting in movie.castings %}
+                
+                <a href="">{{ casting.person.name }}</a>
+                
+                {% if not loop.last %}, 
+                {% endif %}
+
+            {% endfor %}
+            
+        <p class="summary">
+            {{ movie.summary }}
+        </p>
+   
+        <p class="score"><img src="{{ asset('css/stars.png')}}" style="background-position-x: -{{ 100 - 100 / 5 * movie.score }}px">{{ movie.score }}</p>
+
+    </div>
+
+</div>
+<hr>

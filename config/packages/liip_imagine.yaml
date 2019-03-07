@@ -1,0 +1,13 @@
+liip_imagine:
+    # important : si votre serveur est lancé avant l'installation de "gd"S , il faut le redemarrer
+    # afin que liipp puisse fonctionner
+
+    driver: "gd"
+
+    filter_sets:
+        thumb_back_list:
+            quality: 80
+            filters:
+                thumbnail:
+                    size: [42, 63]
+                    mode: outbound

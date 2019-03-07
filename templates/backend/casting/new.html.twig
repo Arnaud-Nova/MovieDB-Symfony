@@ -1,0 +1,11 @@
+{% extends 'backend/backend_layout.html.twig' %}
+
+{% block title %}New Casting{% endblock %}
+
+{% block content %}
+    <h1>Create new Casting</h1>
+
+    {{ include('backend/casting/_form.html.twig') }}
+
+    <a href="{{ path('backend_casting_indexbymovie', {'id' : movie.id }) }}">back to list</a>
+{% endblock %}

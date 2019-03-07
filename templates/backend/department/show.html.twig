@@ -1,0 +1,30 @@
+{% extends 'backend/backend_layout.html.twig' %}
+
+{% block content %}
+    <h2> Department detail</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Name</th>
+        </tr>
+    </thead>
+    <tbody>
+         <tr>
+            <th scope="row">
+                {{ department.id }}
+            </th>
+            <td>
+                {{ department.name }}
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p>
+    <a href="{{ path('backend_department_index') }}">
+        Back to list
+    </a>
+</p>
+{% endblock %}

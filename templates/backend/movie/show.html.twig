@@ -1,0 +1,26 @@
+{% extends 'backend/backend_layout.html.twig' %}
+
+{% block title %}Movie{% endblock %}
+
+{% block content %}
+    <h1>Movie</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ movie.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ movie.title }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('backend_movie_index') }}">back to list</a>
+
+    <a href="{{ path('backend_movie_edit', {'id': movie.id}) }}">edit</a>
+
+    {{ include('backend/movie/_delete_form.html.twig') }}
+{% endblock %}

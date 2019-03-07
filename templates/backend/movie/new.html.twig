@@ -1,0 +1,11 @@
+{% extends 'backend/backend_layout.html.twig' %}
+
+{% block title %}New Movie{% endblock %}
+
+{% block content %}
+    <h1>Create new Movie</h1>
+
+    {{ include('backend/movie/_form.html.twig') }}
+
+    <a href="{{ path('backend_movie_index') }}">back to list</a>
+{% endblock %}
