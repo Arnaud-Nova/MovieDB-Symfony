@@ -60,15 +60,16 @@ class MovieCommand extends Command
 
         foreach ($movies as $movie) {
             $title = str_replace(" ", "+", $movie->getTitle());
-            $responseJson = $this->getCurl($title);
-            $response = json_encode($responseJson);
-            $response = json_decode($response);
-            // dd($response);
+            $response = $this->getCurl($title);
             $movie->setPosterUrl($response->Poster);
-            $this->em->persist($movie);
-            $this->em->flush();
+            // $this->em->persist($movie); inutile en modification => création uniquement
+            $output->writeln([
+                $movie->getTitle(),
+                $response->Poster,
+                '************',
+            ]);
         }
-        
+        $this->em->flush();
 
         $output->writeln([
             'Update Poster End !',
@@ -80,7 +81,7 @@ class MovieCommand extends Command
     //modifier la fonction getcurl poru prendre dynamiquement le titre du film en parametre
     private function getCurl($title){
 
-        $dbmovieApiUrl = 'http://www.omdbapi.com/?apikey=55429286&t=' . $title;
+        $dbmovieApiUrl = 'http://www.omdbapi.com/?apikey=55429286&t=' . urlencode($title);
 
         //lorsque j'utilise cUrl , je dois d'abord initialiser la connexion
         $curl = curl_init();
