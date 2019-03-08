@@ -38,8 +38,6 @@ class MovieController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $sluggifiedTitle = $slugger->sluggify($movie->getTitle());
-            $movie->setSlug($sluggifiedTitle);
 
             //avant l'enregistrement d'un film je dois recuperer l'objet fichier qui n'est pas une chaine de caractere
             $file = $movie->getPoster();
@@ -101,8 +99,6 @@ class MovieController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             
-            $sluggifiedTitle = $slugger->sluggify($movie->getTitle());
-            $movie->setSlug($sluggifiedTitle);
 
             if(!is_null($movie->getPoster())){
 

@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Utils\Slugger;
 
 /*
  Le but de ce subscriber est d'activer les événements doctrine afin que le slug s'effectuer à l'enregistrement et à la mise à jour d'un film (applySlug())
@@ -14,6 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MovieRepository")
+ *  * @ORM\HasLifecycleCallbacks()
  */
 class Movie
 {
@@ -88,14 +90,22 @@ class Movie
     }
 
    /*
-     Activer via annotation le(s) évenement(s) qui vont déclencher la fonction applySlug()
-    */ 
+    Activer via annotation le(s) évenement(s) qui vont déclencher la fonction applySlug(), je peux cumuler plusieurs events sur lesquels appliquer ma fonction
+    ici avant enregistrement et avant update
+    
+    */
+    /**
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
     public function applySlug(){
 
        /*
             Réaliser le code nécessaire permettant d'instancier un objet du type Slugger
             qui pourra réaliser les action nécessaires sur la propriété à modifier attendue
        */
+        $slugger = new Slugger(true);
+        $this->slug = $slugger->sluggify($this->title);
     }
 
     public function getId()

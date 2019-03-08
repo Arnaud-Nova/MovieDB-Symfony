@@ -1,6 +1,7 @@
 <?php
 namespace App\EventSubscriber;
 
+use Twig\Environment as Twig;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -13,8 +14,14 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 class MaintenanceSubscriber implements EventSubscriberInterface
 {
 
+
     public function onKernelResponse(FilterResponseEvent $event)
     {
+        // dd($event->getResponse());
+
+        // on stocke le content de la repsonse
+        $response = $event->getResponse();
+        $content =$response->getContent();
         /*
          L'objet $event du type FilterResponseEvent permet de récuperer un objet du type Response (utilisé a chaque return d'un controller notamment)
 
@@ -25,18 +32,19 @@ class MaintenanceSubscriber implements EventSubscriberInterface
          - Le body / content à afficher (<html>...</html>)        
        */
 
+       $banner = '<div class="alert alert-danger" role="alert">Maintenance prévue le 07 mars à 23h00</div>';
+
+       // Je remplace ma balise html qui me sert de référence et je la remet après y avoir ajouté ma banière d'alerte
+       $updatedContent = str_replace('</header>', '</header>' . $banner, $content);
+
+       $response->setContent($updatedContent);
     }
+
     public static function getSubscribedEvents()
     {
-       /*
-            Décommenter puis définir le type d'évenemment du Kernel (1) le plus approprié sur lequel va être déclenché la fonction onKernelResponse
-
-            Doc : https://symfony.com/doc/current/reference/events.html
-        */ 
 
         return array(
-            //KernelEvents::/*1*/ => onKernelResponse,
+            KernelEvents::RESPONSE => 'onKernelResponse',
         );
-        
     }
 }
