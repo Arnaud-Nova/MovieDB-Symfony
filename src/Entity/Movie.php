@@ -78,6 +78,11 @@ class Movie
      */
     private $slug;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $posterUrl;
+
     public function __construct()
     {
         $this->castings = new ArrayCollection();
@@ -95,8 +100,8 @@ class Movie
     
     */
     /**
-     * @ORM\PrePersist
-     * @ORM\PreUpdate
+     * ORM\PrePersist (on retire le @ devant ORM pour emêcher l'activation de l'event)
+     * ORM\PreUpdate
      */
     public function applySlug(){
 
@@ -104,8 +109,9 @@ class Movie
             Réaliser le code nécessaire permettant d'instancier un objet du type Slugger
             qui pourra réaliser les action nécessaires sur la propriété à modifier attendue
        */
-        $slugger = new Slugger(true);
-        $this->slug = $slugger->sluggify($this->title);
+        // lignes commentées pour ne pas fair doublon avec l'event Listener créé par la suite 
+        // $slugger = new Slugger(true);
+        // $this->slug = $slugger->sluggify($this->title);
     }
 
     public function getId()
@@ -276,6 +282,18 @@ class Movie
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getPosterUrl(): ?string
+    {
+        return $this->posterUrl;
+    }
+
+    public function setPosterUrl(?string $posterUrl): self
+    {
+        $this->posterUrl = $posterUrl;
 
         return $this;
     }

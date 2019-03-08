@@ -31,6 +31,7 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
+    # DECLARATION SERVICE SLUGGER
     #App\Utils\Slugger:
         #arguments:
             #$toLower: '%slugger_to_lower%' # appel d'une constante %maconstantedansparameters%
@@ -50,4 +51,13 @@ services:
             $pathFile: '%poster_directory%'
 
     App\Utils\FileUploader : '@nova_fileuploader'
+
+    # DECLARATION LISTENER DOCTRINE (à noter qu'un listener est aussi un service mais un peu special car appelé automatiquement sur certain événemment)
+
+    # je dois tagger mon listener doctrine avec le tag "doctrine_listener" pour qu'il soit pris en compte par doctrine
+    # je dois aussi ajouter autant de ligne dans tags que je souahite appliquer d'events différents
+    App\EventListener\Sluggifier: 
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
     

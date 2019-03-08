@@ -2,7 +2,8 @@
 
     <div class="col-4">
         <a href="{{ path('movie_show', { 'slug': movie.slug }) }}">
-            <img src="{{ asset(poster_upload_path ~ (movie.poster ?: 'default-movie.jpg')) }}" class="img-fluid">
+            <img src="{{ movie.posterUrl }}" class="img-fluid">
+            {# asset(poster_upload_path ~ (movie.poster ?: 'default-movie.jpg')) #}
         </a>
     </div>
 
